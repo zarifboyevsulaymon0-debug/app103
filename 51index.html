@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Currency Converter</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+body{
+    background:#0f172a;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.container{
+    width:750px;
+    background:#1e293b;
+    padding:25px;
+    border-radius:22px;
+    color:white;
+    box-shadow:0 0 25px rgba(0,0,0,0.4);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.box{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+input,select{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#334155;
+    color:white;
+    outline:none;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    margin-top:20px;
+    border:none;
+    border-radius:12px;
+    background:#22c55e;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#16a34a;
+}
+
+.result{
+    margin-top:25px;
+    background:#334155;
+    padding:20px;
+    border-radius:14px;
+    line-height:2;
+    font-size:20px;
+}
+
+.rates{
+    margin-top:20px;
+    background:#334155;
+    padding:18px;
+    border-radius:14px;
+    line-height:2;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>💱 Currency Converter</h2>
+
+    <div class="box">
+
+        <input
+        type="number"
+        id="amount"
+        placeholder="Amount">
+
+        <select id="currency">
+
+            <option value="usd">USD</option>
+            <option value="eur">EUR</option>
+            <option value="rub">RUB</option>
+            <option value="uzs">UZS</option>
+
+        </select>
+
+    </div>
+
+    <button onclick="convertCurrency()">
+        Convert
+    </button>
+
+    <div class="result" id="result">
+
+        Conversion shu yerda chiqadi...
+
+    </div>
+
+    <div class="rates">
+
+        📌 Demo Rates:
+        <br>
+
+        1 USD = 12700 UZS
+        <br>
+
+        1 EUR = 13800 UZS
+        <br>
+
+        1 RUB = 150 UZS
+
+    </div>
+
+</div>
+
+<script>
+
+function convertCurrency(){
+
+    let amount =
+    Number(document.getElementById("amount").value);
+
+    let currency =
+    document.getElementById("currency").value;
+
+    let result =
+    document.getElementById("result");
+
+    if(amount <= 0){
+
+        result.innerHTML =
+        "Amount kiriting ❌";
+
+        return;
+    }
+
+    let converted = 0;
+
+    if(currency === "usd"){
+
+        converted = amount * 12700;
+
+    }
+
+    else if(currency === "eur"){
+
+        converted = amount * 13800;
+
+    }
+
+    else if(currency === "rub"){
+
+        converted = amount * 150;
+
+    }
+
+    else if(currency === "uzs"){
+
+        converted = amount / 12700;
+
+    }
+
+    result.innerHTML = `
+    
+        💰 Result:
+        <br><br>
+
+        ${converted.toFixed(2)}
+
+    `;
+}
+
+</script>
+
+</body>
+</html>
